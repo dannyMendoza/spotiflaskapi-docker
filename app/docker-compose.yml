@@ -1,0 +1,37 @@
+services:
+  redis:
+    image: redis
+    restart: unless-stopped
+    networks:
+      - spotinet
+  spotifapi:
+    build: .
+    image: spotifapi:v1
+    restart: unless-stopped
+    environment:
+      APP: /data/app
+    volumes:
+      - .:/data/app
+      # - /dev/null:/data/app/Dockerfile # Ignore Dockerfile
+    networks:
+      - spotinet
+    ports:
+      - 8888:8888
+    secrets:
+      - spotify_uri
+      - spotify_client_id
+      - spotify_client_secret
+    depends_on:
+      - redis
+
+networks:
+  spotinet:
+    driver: bridge
+
+secrets:
+  spotify_uri:
+    file: ../spotify_uri.txt
+  spotify_client_id:
+    file: ../spotify_client_id.txt
+  spotify_client_secret:
+    file: ../spotify_client_secret.txt

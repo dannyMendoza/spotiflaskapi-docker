@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SpotiFlaskApi</title>
+        <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <header>
+            <h1>SpotiFlaskApi</h1>
+            {% if artist %}
+            <p>Artist: {{artist}}</p>
+            <p>Song: {{song}}</p>
+            <p>Url: <a href={{track_url}}>{{track_url}}</a></p>
+                {% if action == 'saved' %}
+                    {% if track_in_playlist %}
+                        <form method="POST" action="saved">
+                            <button type="submit" name="action" value="remove">Remove from playlist</button>
+                        </form>
+                    {% else %}
+                        <form method="POST" action="saved">
+                            <button type="submit" name="action" value="add">Add to playlist</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <p><strong>[INACTIVE]</strong></p>
+            {% endif %}
+        </header>
+    </body>
+</html>

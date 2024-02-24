@@ -1,0 +1,31 @@
+@font-face {
+    font-family: CodeLat;
+    src: url('/static/M+CodeLat50NerdFontMono-Regular.ttf');
+}
+
+body {
+    font: 12pt CodeLat;
+    color: #ababab;
+    background-color: #121212;
+}
+
+a:link {
+    color: #04AA6D;
+}
+
+a:hover {
+    color: #06CC66;
+}
+
+a:visited {
+    color: #707279;
+}
+
+button {
+    font: 12pt CodeLat;
+    text-align: center;
+    color: #06CC66;
+    background-color: #121212;
+    border: 1px solid #ababab;
+    border-radius: 4px;
+}
